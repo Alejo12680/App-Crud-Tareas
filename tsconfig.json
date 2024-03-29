@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    // strict": false, sirve para que salga el error de no inicializar las variables más que todo el @Input
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

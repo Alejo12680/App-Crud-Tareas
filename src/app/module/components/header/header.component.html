@@ -1,3 +1,32 @@
-<p>
-  header works!
-</p>
+<ion-header>
+  <!-- pasamos la propiedad de color con ternario, si no hay color coloca el primary y si hay color en la page login deja el color elegido -->
+  <ion-toolbar [color]="color ? color : 'primary'">
+
+    <!-- El button [defaultHref] recibe el parametro 'backbutton' para mostrarlo si el Ion-Back-Button existe -->
+    <ion-buttons *ngIf="backButton" slot="start">
+
+      <!-- Button para cerrar el modal en el caso que se necesite -->
+      <ion-button *ngIf="isModal">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Button de el Back -->
+      <ion-back-button [defaultHref]="backButton"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Colocamos el ngClass el cual nos indica, si title es true, entonces la clase solo se va colocar cuando exista la propiedad centerTitle -->
+    <ion-title *ngIf="title" [ngClass]="{ 'ion-text-center': centerTitle }"> {{title}} </ion-title>
+
+    <!-- Button para cambiar el modo de color de darck a light -->
+    <ion-buttons slot="end">
+      <ion-button (click)="setColor(false)" *ngIf="darkModel">
+        <ion-icon name="sunny"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="setColor(true)" *ngIf="!darkModel">
+        <ion-icon name="moon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
