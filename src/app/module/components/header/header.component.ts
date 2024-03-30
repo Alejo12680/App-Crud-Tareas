@@ -10,7 +10,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 })
 export class HeaderComponent  implements OnInit {
 
-  // Resive una propiedades, para poder Reutilizar el componente, con el metodo Input, el ? sirve para iniciarla en vacio y evitar el error, tambien se puede quitar en tsconfig.json con el "strict": pasarlo a (false) o colocar el '| undefined'.
+  // Resive una propiedades, para poder Reutilizar el componente, con el metodo Input, el ! sirve para iniciarla en vacio y evitar el error, tambien se puede quitar en tsconfig.json con el "strict": pasarlo a (false) o colocar el '| undefined'.
   @Input() title: string | undefined;
   @Input() backButton: string | undefined;
   @Input() isModal: boolean | undefined;

@@ -2,8 +2,41 @@
 <ion-content>
   <!-- Comunicacion con el componenete Header, esta sin el parametro de color=''; Tambien si colocamos el parametro backButton con la ruta login  backButton='/login' el boton se mostrara -->
   <app-header></app-header>
+  <app-logo></app-logo>
+
+  <h2 class="ion-text-center ion-no-margin">Login</h2>
 
   <div class="content">
+    <div class="flex-center">
 
+      <form>
+        <!-- Se pueden copiar el componente y cambiarle la propiedades -->
+        <app-custom-input [control]="form.controls.email" type="email" label="Correo" icon="mail-outline"></app-custom-input>
+        
+        <!-- Validador de Errores en el componenete Email, Si hay un error o si el usuario toco el input-->
+        <div *ngIf="form.controls.email.errors && form.controls.email.dirty" class="validators">
+          <!-- Validador de Errores especificos como, es requerido y si es un Email -->
+          <div *ngIf="form.controls.email.errors?.['required']"> Ingrese un Email </div>
+          <div *ngIf="form.controls.email.errors?.['email']"> Email no es Valido </div>
+        </div>
+  
+        <app-custom-input [control]="form.controls.password" type="password" label="Contraseña" icon="lock-closed-outline"></app-custom-input>
+  
+        <!-- Validador de Errores en el componenete Password, Si hay un error o si el usuario toco el input-->
+        <div *ngIf="form.controls.password.errors && form.controls.password.dirty" class="validators">
+          <!-- Validador de Errores especificos como, es requerido y si es un Email -->
+          <div *ngIf="form.controls.password.errors?.['required']"> Ingrese una Contraseña </div>
+        </div>
+  
+        <!-- Button de enviar el formulario -->
+        <ion-button expand="block" shape="round" class="ion-margin" [disabled]="form.invalid">
+          Acceder
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+
+        <!--  -->
+  
+      </form>
+    </div>
   </div>
 </ion-content>

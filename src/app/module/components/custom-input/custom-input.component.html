@@ -1,3 +1,15 @@
-<p>
-  custom-input works!
-</p>
+<ion-item class="ion-margin-vertical">
+  <ion-icon *ngIf="icon" slot="start" [name]="icon" color="primary"></ion-icon>
+  <!-- Se puede comento esta linea porque crea un Warning con el ion-label ya que ionic cuando se comunica con componenetes se debe dejar el atributo "label" en el input, es porque en la version 7 se quita el ion-label. -->
+  <ion-label position="floating">{{label}} </ion-label>
+  <!-- En este input, se dejo el atributo "label" en el ion-input junto con el atributo "labelPlacement" para que cumpla la misma funcion que (position="floating"), Tiene una propiedad llamada "debounce" lo hace es retrazar el tiempo en el que input toma el valor, en este caso se deja en medio segundo = 500 -->
+  <!-- <ion-input [formControl]="control" [autocomplete]="autocomplete" [type]="type" labelPlacement="floating" [label]="label" ></ion-input> -->
+  <ion-input [formControl]="control" [autocomplete]="autocomplete" [type]="type" debounce="500"></ion-input>
+
+  <ion-buttons *ngIf="isPassword" slot="end" class="ion-padding-top ion-no-margin">
+    <ion-button (click)="showHidePassword()">
+      <!-- If Ternario -->
+      <ion-icon [name]="hide ? 'eye-outline' : 'eye-off-outline'" ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-item>
