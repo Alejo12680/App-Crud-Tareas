@@ -1,3 +1,18 @@
+ion-fab-button {
+    margin: 30px;
+}
+
+ion-button {
+    width: 300px;
+}
+
+.flex-horizontal {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+
 // 590 pixeles en adelante aplica todo el codigo
 @media (min-width: 590px) {
     

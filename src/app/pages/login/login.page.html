@@ -9,7 +9,7 @@
   <div class="content">
     <div class="flex-center">
 
-      <form>
+      <form (ngSubmit)="submit()">
         <!-- Se pueden copiar el componente y cambiarle la propiedades -->
         <app-custom-input [control]="form.controls.email" type="email" label="Correo" icon="mail-outline"></app-custom-input>
         
@@ -29,12 +29,23 @@
         </div>
   
         <!-- Button de enviar el formulario -->
-        <ion-button expand="block" shape="round" class="ion-margin" [disabled]="form.invalid">
-          Acceder
-          <ion-icon slot="end" name="log-in-outline"></ion-icon>
-        </ion-button>
+        <div class="flex-center">
+          <ion-button shape="round" class="ion-margin" [disabled]="form.invalid" type="submit" (keyup.enter)="submit()">
+            Acceder
+            <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          </ion-button>
+        </div>
 
-        <!--  -->
+        <!-- Divicion en la cual es para que el usuario se registre -->
+        <div class="flex-horizontal">
+          <div>Registrate</div>
+
+          <ion-fab>
+            <ion-fab-button>
+              <ion-icon name="person-add-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
   
       </form>
     </div>

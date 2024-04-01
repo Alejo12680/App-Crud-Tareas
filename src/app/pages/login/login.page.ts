@@ -20,4 +20,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  submit() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+      
+    }
+  }
+
 }
