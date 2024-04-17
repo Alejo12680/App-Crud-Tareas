@@ -1,15 +1,24 @@
 
 <ion-content>
   <!-- Comunicacion con el componenete Header, esta sin el parametro de color=''; Tambien si colocamos el parametro backButton con la ruta login  backButton='/login' el boton se mostrara -->
-  <app-header></app-header>
+  <app-header backButton="/login"></app-header>
   <app-logo></app-logo>
 
-  <h2 class="ion-text-center ion-no-margin">Login</h2>
+  <h2 class="ion-text-center ion-no-margin">Registro</h2>
 
   <div class="content">
     <div class="flex-center">
 
       <form (ngSubmit)="submit()">
+        <!-- Se pueden copiar el componente y cambiarle la propiedades -->
+        <app-custom-input [control]="form.controls.name" type="text" label="Nombre" icon="person-outline"></app-custom-input>
+        <!-- Validador de Errores en el componenete Email, Si hay un error o si el usuario toco el input-->
+        <div *ngIf="form.controls.name.errors && form.controls.name.dirty" class="validators">
+          <!-- Validador de Errores especificos como, es requerido y si es un Email -->
+          <div *ngIf="form.controls.name.errors?.['required']"> Ingrese un Nombre </div>
+          <div *ngIf="form.controls.name.errors?.['minlength']"> Nombre no es Valido </div>
+        </div>
+
         <!-- Se pueden copiar el componente y cambiarle la propiedades -->
         <app-custom-input [control]="form.controls.email" type="email" label="Correo" icon="mail-outline" autocomplete="email"></app-custom-input>
         <!-- Validador de Errores en el componenete Email, Si hay un error o si el usuario toco el input-->
@@ -24,28 +33,27 @@
         <div *ngIf="form.controls.password.errors && form.controls.password.dirty" class="validators">
           <!-- Validador de Errores especificos como, es requerido y si es un Email -->
           <div *ngIf="form.controls.password.errors?.['required']"> Ingrese una Contraseña </div>
+          <div *ngIf="form.controls.password.errors?.['minlength']"> Minimo 4 caracteres </div>
+        </div>
+
+        <app-custom-input [control]="form.controls.confirmPassword" type="password" label="Confirmar Contraseña" icon="checkmark-circle-outline"></app-custom-input>
+        <!-- Validador de Errores en el componenete Password, Si hay un error o si el usuario toco el input-->
+        <div *ngIf="form.controls.confirmPassword.errors && form.controls.confirmPassword.dirty" class="validators">
+          <!-- Validador de Errores especificos como, es requerido y si es un Email -->
+          <div *ngIf="form.controls.confirmPassword.errors?.['required']"> Ingrese una Contraseña </div>
+          <div *ngIf="form.controls.confirmPassword.errors?.['noMatch']"> La contraseña no coinciden </div>
         </div>
   
         <!-- Button de enviar el formulario -->
         <div class="flex-center">
           <ion-button shape="round" class="ion-margin" [disabled]="form.invalid" type="submit" (keyup.enter)="submit()">
-            Acceder
+            Registrarse
             <ion-icon slot="end" name="log-in-outline"></ion-icon>
           </ion-button>
-        </div>
-
-        <!-- Divicion en la cual es para que el usuario se registre -->
-        <div class="flex-horizontal">
-          <div>Registrate</div>
-
-          <ion-fab>
-            <ion-fab-button routerLink="/register" >
-              <ion-icon name="person-add-outline"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
         </div>
   
       </form>
     </div>
   </div>
 </ion-content>
+
