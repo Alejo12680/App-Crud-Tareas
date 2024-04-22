@@ -49,7 +49,6 @@ export class RegisterPage implements OnInit {
   // Funcion del formulario para crear el usuario
   creacionUser() {
     if (this.form.valid) {
-      console.log(this.form.value);  
       this.loadingSvc.presentLoading({message: 'Registrando...'});
 
       let estructura = {
@@ -75,19 +74,21 @@ export class RegisterPage implements OnInit {
 
     this.taskingService.crearUsuario(estructura).subscribe({
       next: (res: any) => {
-        this.toastSvc.presentToast({position: 'top', message: res.message, color: 'success', duration: 3000})
-        this.router.navigate(['/login'])
+        this.toastSvc.presentToast({position: 'top', message: res.message, color: 'success', duration: 3000, icon: 'person-outline'})
         // Reset de Formulario
         this.form.reset();  
-        this.loadingSvc.dismissLoading();    
+        this.loadingSvc.dismissLoading(); 
+        this.router.navigate(['/login'])   
 
       },
       error: (err: any) => {
         if (err.status === 0) {
-          this.toastSvc.presentToast({position: 'top', message: 'Error de conexión. Por favor, verifica tu conexión a internet e intenta de nuevo más tarde.', color: 'danger', duration: 5000})
+          this.toastSvc.presentToast({position: 'top', message: 'Error de conexión. Por favor, verifica tu conexión a internet e intenta de nuevo más tarde.', color: 'danger', duration: 5000, icon: 'alert-circle-outline'})
+
+          this.loadingSvc.dismissLoading();
           
         } else
-        this.toastSvc.presentToast({position: 'top', message: err.error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo más tarde.', color: 'danger', duration: 5000})
+        this.toastSvc.presentToast({position: 'top', message: err.error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo más tarde.', color: 'danger', duration: 5000, icon: 'alert-circle-outline'})
 
         this.loadingSvc.dismissLoading();
       }

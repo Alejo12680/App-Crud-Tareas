@@ -32,19 +32,18 @@ export class LoginPage implements OnInit {
   // Funcion del formulario para ingreso del usuario login
   entryUser() {
     if (this.form.valid) {
-      console.log(this.form.value);
       this.loadingSvc.presentLoading({ message: 'Ingresando...' });
 
       let estructura = {
         "correo": this.form.value.email,
-        "contraseña": this.form.value.password,
+        "contrasena": this.form.value.password,
       }
 
       //Llamado de los datos en la función que consume los servicios
       this.servicioEntryUser(estructura);
 
     } else {
-      this.toastSvc.presentToast({ position: 'top', message: 'Por favor verifique los campos', color: 'danger', duration: 3000 })
+      this.toastSvc.presentToast({ position: 'top', message: 'Por favor verifique los campos', color: 'danger', duration: 5000, icon: 'alert-circle-outline' })
       this.loadingSvc.dismissLoading();
     }
   }
@@ -54,14 +53,14 @@ export class LoginPage implements OnInit {
 
     this.taskingService.login(estructura).subscribe({
       next: (res: any) => {
-        localStorage.setItem('token', res.data)
+        localStorage.setItem('token', res.token)
         localStorage.setItem('nombre', res.nombre)
 
-        this.router.navigate(['/Inicio'])
+        this.router.navigate(['/tabs'])
         this.loadingSvc.dismissLoading();
       },
       error: (err: any) => {
-        this.toastSvc.presentToast({position: 'top', message: err.error.message, color: 'danger', duration: 3000})
+        this.toastSvc.presentToast({position: 'top', message: err.error.message, color: 'danger', duration: 5000, icon: 'alert-circle-outline'})
         this.loadingSvc.dismissLoading();
       }
     });

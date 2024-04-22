@@ -11,7 +11,7 @@ export class ToastService {
   ) { }
 
   // Funsion para que se ejecute el Toast
-  async presentToast(opts?: ToastOptions) {
+  async presentToast(opts: ToastOptions) {
     const toast = await this.toastController.create(opts);
     await toast.present();
   }
