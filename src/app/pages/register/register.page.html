@@ -9,9 +9,9 @@
   <div class="content">
     <div class="flex-center">
 
-      <form (ngSubmit)="submit()">
+      <form (ngSubmit)="creacionUser()">
         <!-- Se pueden copiar el componente y cambiarle la propiedades -->
-        <app-custom-input [control]="form.controls.name" type="text" label="Nombre" icon="person-outline"></app-custom-input>
+        <app-custom-input [control]="form.controls.name" type="text" label="Nombre Completo" icon="person-outline"></app-custom-input>
         <!-- Validador de Errores en el componenete Email, Si hay un error o si el usuario toco el input-->
         <div *ngIf="form.controls.name.errors && form.controls.name.dirty" class="validators">
           <!-- Validador de Errores especificos como, es requerido y si es un Email -->
@@ -46,7 +46,7 @@
   
         <!-- Button de enviar el formulario -->
         <div class="flex-center">
-          <ion-button shape="round" class="ion-margin" [disabled]="form.invalid" type="submit" (keyup.enter)="submit()">
+          <ion-button shape="round" class="ion-margin" [disabled]="form.invalid" type="submit" (keyup.enter)="creacionUser()">
             Registrarse
             <ion-icon slot="end" name="log-in-outline"></ion-icon>
           </ion-button>
