@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -20,5 +20,13 @@ export class TaskingService {
   login(body: any) {
     let query = `${this.URL}/login`
     return this.http.post(query, body)
+  }
+
+  autenticacion(token: string) {
+    let query = `${this.URL}/verificarToken`
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get(query, { headers })
   }
 }
