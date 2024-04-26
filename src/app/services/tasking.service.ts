@@ -29,4 +29,9 @@ export class TaskingService {
     })
     return this.http.get(query, { headers })
   }
+
+ cerrarSesion() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('nombre');
+ }
 }

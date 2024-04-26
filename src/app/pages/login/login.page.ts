@@ -60,7 +60,14 @@ export class LoginPage implements OnInit {
         this.loadingSvc.dismissLoading();
       },
       error: (err: any) => {
-        this.toastSvc.presentToast({position: 'top', message: err.error.message, color: 'danger', duration: 5000, icon: 'alert-circle-outline'})
+        if (err.status === 401) {
+          // Si las credenciales son incorrectas, mostrar un mensaje de error y desactivar el indicador de carga
+          this.toastSvc.presentToast({position: 'top', message: 'Correo o contraseña incorrectos', color: 'danger', duration: 5000, icon: 'alert-circle-outline'})
+          
+        } else {
+          // Para otros errores, mostrar un mensaje genérico de error y desactivar el indicador de carga
+          this.toastSvc.presentToast({position: 'top', message: 'Se produjo un error al iniciar sesión', color: 'danger', duration: 5000, icon: 'alert-circle-outline'})
+        }
         this.loadingSvc.dismissLoading();
       }
     });

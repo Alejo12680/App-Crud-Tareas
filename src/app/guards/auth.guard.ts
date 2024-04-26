@@ -30,9 +30,8 @@ export class AuthGuard implements CanActivate {
 
       // El usuario si existe
       map((res: any) => {
+        /* console.log(res); */
         if (res) {
-          console.log(res);
-          
           return true;
 
         } else {
